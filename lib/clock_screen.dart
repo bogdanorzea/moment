@@ -1,5 +1,6 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class ClockScreen extends StatelessWidget {
@@ -11,10 +12,17 @@ class ClockScreen extends StatelessWidget {
       body: StreamBuilder<void>(
         stream: Stream.periodic(const Duration(seconds: 1)),
         builder: (context, _) {
-          return Center(
+          return Align(
+            alignment: const Alignment(0, 1 / 3),
             child: Text(
-              DateFormat('hh:mm:ss').format(DateTime.now()),
-              style: GoogleFonts.lato(fontSize: 48),
+              DateFormat('hh:mm:ss a').format(DateTime.now()),
+              style: const TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 48,
+                fontFeatures: <FontFeature>[
+                  FontFeature.tabularFigures(),
+                ],
+              ),
             ),
           );
         },
